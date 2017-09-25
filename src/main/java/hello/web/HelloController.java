@@ -4,6 +4,8 @@
  */
 package hello.web;
 
+import hello.domain.AutoUserEntity;
+import hello.domain.AutoUserRepository;
 import hello.domain.User;
 import hello.domain.UserRepository;
 import hello.service.CrudService;
@@ -22,6 +24,9 @@ import java.util.List;
 public class HelloController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AutoUserRepository autoUserRepository;
 
     @Autowired
     private CrudService initService;
@@ -51,6 +56,12 @@ public class HelloController {
     public @ResponseBody
     Iterable<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @GetMapping(path = "/users")
+    public @ResponseBody
+    Iterable<AutoUserEntity> getAllAutoUsers() {
+        return autoUserRepository.findAll();
     }
 
     @GetMapping(path = "/find")

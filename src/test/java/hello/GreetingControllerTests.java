@@ -43,4 +43,11 @@ public class GreetingControllerTests {
                 .andDo(print()).andExpect(status().isOk());
     }
 
+    @Test
+    public void paramAutoUserShouldReturnTailoredMessage() throws Exception {
+
+        this.mockMvc.perform(get("/demo/users"))
+                .andDo(print()).andExpect(status().isOk());
+    }
+
 }
