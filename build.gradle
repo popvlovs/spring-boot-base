@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        // 使用aliyun国内镜像站
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+    dependencies {
+        classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '1.5.7.RELEASE'
+        //classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
+    }
+}
+
+// java工程基础插件
+apply plugin: 'java'
+
+// idea插件
+apply plugin: 'idea'
+
+// spring-boot插件
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'spring-boot-base'
+    version =  '0.1.0'
+}
+
+// 设置项目结构
+sourceSets {
+    main.java.srcDirs = ['src/main/java']
+    main.resources.srcDirs = ['src/main/resources']
+}
+
+repositories {
+	maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}
+    //maven { url "http://repo.spring.io/snapshot" }
+    //maven { url "http://repo.spring.io/milestone" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    // spring-boot start
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.7.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.7.RELEASE'
+    // spring-boot end
+
+    // activemq start
+    compile group: 'org.springframework', name: 'spring-jms', version: '4.3.11.RELEASE'
+    compile group: 'org.apache.activemq', name: 'activemq-core', version: '5.7.0'
+    compile group: 'org.apache.activemq', name: 'activemq-client', version: '5.15.0'
+    compile group: 'org.apache.activemq', name: 'activemq-spring', version: '5.15.0'
+    // activemq end
+
+    // mysql start
+    runtime group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
+
+    // mysql end
+
+    // test start
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.7.RELEASE'
+    testCompile('com.jayway.jsonpath:json-path')
+    // test end
+}
+
