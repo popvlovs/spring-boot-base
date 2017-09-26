@@ -4,7 +4,7 @@
 
 package hello.service;
 
-import hello.domain.User;
+import hello.domain.UserEntity;
 import hello.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,18 @@ public class CrudService {
     }
 
     @Transactional
-    public void InitUsers()
+    public void addUsers()
     {
         userRepository.deleteAll();
 
-        userRepository.save(new User("张三", "zhangsan@126.com"));
+        UserEntity user1 = new UserEntity();
+        user1.setName("张三");
+        user1.setEmail("z3.com");
+        userRepository.save(user1);
 
-        userRepository.save(new User("李四", "lisi@126.com"));
+        UserEntity user2 = new UserEntity();
+        user1.setName("李四");
+        user1.setEmail("l4.com");
+        userRepository.save(user2);
     }
 }
